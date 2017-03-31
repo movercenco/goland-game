@@ -13,5 +13,3 @@ func main() {
 
 	lib.StartBattle(user1, user2);
 }
-
-

@@ -30,7 +30,6 @@ func Step(u Action) {
 
 //StartBattle
 func StartBattle(user1 Action, user2 Action) {
-
 	for {
 		Step(user1)
 		if user1.GetHealth() <= 1 {

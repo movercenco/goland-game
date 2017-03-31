@@ -1,4 +1,4 @@
-# Golang Game
+# Golang Game Combat
 
 Run
 

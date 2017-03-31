@@ -1,5 +1,7 @@
 package lib
 
+//import "fmt"
+
 type user struct {
 	name       string
 	health     int
@@ -27,7 +29,6 @@ func (u *user) GetProtection() int {
 }
 
 func (u *user) Biter(power int) {
-	//pow := power
 	if u.protection > 0 {
 		u.protection -= power;
 	}
@@ -45,4 +46,15 @@ func (u *user) Biter(power int) {
 //CreateUser return new instance of User
 func CreateUser(name string, health int, protection int) *user {
 	return &user{name: name, health: health, protection: protection}
+}
+
+//GenerateUsers return array of users
+func GenerateUsers(u_nr int) []*user {
+	users := make([]*user, u_nr);
+
+	for i := 0; i < u_nr; i++ {
+		users[i] = CreateUser("test", 100, i)
+	}
+
+	return users
 }
