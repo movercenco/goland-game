@@ -11,15 +11,7 @@ type Action interface {
 	Biter(int)
 	GetHealth() int
 	GetName() string
-}
-
-func (u *user) Biter(power int) {
-	//pow := power
-	if u.protection != 0 {
-
-	}
-
-	u.health = u.health - power
+	GetProtection() int
 }
 
 func (u *user) GetHealth() int {
@@ -30,8 +22,27 @@ func (u *user) GetName() string {
 	return u.name
 }
 
-//CreteUser retrun new instance of User
-func CreteUser(name string, health int, protection int) *user {
-	user := &user{name: name, health: health, protection: protection}
-	return user
+func (u *user) GetProtection() int {
+	return u.protection
+}
+
+func (u *user) Biter(power int) {
+	//pow := power
+	if u.protection > 0 {
+		u.protection -= power;
+	}
+
+	if u.protection == 0 {
+		u.health = u.health - power;
+	}
+
+	if u.protection < 0 {
+		u.health = u.health + u.protection;
+		u.protection = 0;
+	}
+}
+
+//CreateUser return new instance of User
+func CreateUser(name string, health int, protection int) *user {
+	return &user{name: name, health: health, protection: protection}
 }
