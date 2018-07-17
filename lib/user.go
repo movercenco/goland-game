@@ -1,15 +1,12 @@
 package lib
 
-//import "fmt"
-
 type user struct {
 	name       string
 	health     int
 	protection int
 }
 
-// Action user
-type Action interface {
+type UserAction interface {
 	Biter(int)
 	GetHealth() int
 	GetName() string
@@ -29,32 +26,14 @@ func (u *user) GetProtection() int {
 }
 
 func (u *user) Biter(power int) {
-	if u.protection > 0 {
-		u.protection -= power;
+	if u.protection >= power{
+		u.protection -= power
+	} else {
+		if u.protection != 0 {
+			u.health = u.health - (power - u.protection)
+			u.protection = 0
+		} else{
+			u.health = u.health - power
+		}
 	}
-
-	if u.protection == 0 {
-		u.health = u.health - power;
-	}
-
-	if u.protection < 0 {
-		u.health = u.health + u.protection;
-		u.protection = 0;
-	}
-}
-
-//CreateUser return new instance of User
-func CreateUser(name string, health int, protection int) *user {
-	return &user{name: name, health: health, protection: protection}
-}
-
-//GenerateUsers return array of users
-func GenerateUsers(u_nr int) []*user {
-	users := make([]*user, u_nr);
-
-	for i := 0; i < u_nr; i++ {
-		users[i] = CreateUser("test", 100, i)
-	}
-
-	return users
 }
