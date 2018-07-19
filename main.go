@@ -1,8 +1,6 @@
 package main
 
-import (
-	"./lib"
-)
+import "combat/lib"
 
 func main() {
 	user1 := lib.CreateUser()
